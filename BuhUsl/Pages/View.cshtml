@@ -1,0 +1,19 @@
+﻿@page "{id}/{handler?}"
+@model BuhUsl.Pages.ViewModel
+@{ ViewData["Title"] = Model.Client.Name; }
+
+<h2>@Model.Client.Name</h2>
+
+<p>@Model.Client.Email</p>
+
+
+<dl>
+    @foreach (var item in Model.Client.Orders)
+    {
+        <dt>@item.Name</dt>
+        <dd>@item.Inn</dd>
+        <dd>@item.SystemNalog</dd>
+        <dd>@item.Quarter</dd>
+        <dd>@item.Year</dd>
+    }
+</dl>

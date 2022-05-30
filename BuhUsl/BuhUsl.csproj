@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>7c345a48-2069-4f89-a188-df54b923910a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--If you're using Sql Server or Local DB, use the following package-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    
+    <!--If you're using SQLite, use the following package-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.0" />
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="DB">
+    <Position X="5.333" Y="5.844" Height="0.406" Width="0.7" />
+  </Comment>
+  <Comment CommentText="SQL">
+    <Position X="6.052" Y="5.25" Height="0.406" Width="0.7" />
+  </Comment>
+  <Comment CommentText="ClientId">
+    <Position X="4.5" Y="5.25" Height="0.406" Width="0.7" />
+  </Comment>
+  <Comment CommentText="----&gt;&#xD;&#xA;&lt;----">
+    <Position X="3.208" Y="2.281" Height="0.5" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Рис 12.11">
+    <Position X="7.771" Y="1.51" Height="0.396" Width="0.908" />
+  </Comment>
+  <Class Name="BuhUsl.Pages.NullOtchModel" Collapsed="true">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\NullOtch.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuhUsl.Models.CreateClientCommand" Collapsed="true">
+    <Position X="1.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CreateClientCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuhUsl.Data.Client" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACgAAAAAgAAAAAQAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuhUsl.ClientService" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAIABAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>ClientService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuhUsl.Data.AppDbContext" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\AppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuhUsl.Pages.ViewModel" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Pages\View.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

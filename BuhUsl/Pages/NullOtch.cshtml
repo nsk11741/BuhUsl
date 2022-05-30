@@ -1,0 +1,94 @@
+﻿@page
+@model BuhUsl.Pages.NullOtchModel
+@{
+    ViewData["Title"] = "Нулевая отчетность";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<p>Закажите нулевую отчетность в, заполнив форму:</p>
+
+<form method="post" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <partial name="_EditClientPartial" model="Model.Input" />
+
+    <div class="form-group">
+
+        <table class="table table-striped" id="orders">
+            <thead>
+                <tr>
+                    <th>Название компании</th>
+                    <th>ИНН (от 10 до 15 цифр)</th>
+                    <th>Сист. налогообложения</th>
+                    <th>Квартал (1-4)</th>
+                    <th>Год (2019-2022)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Input.Orders.Count; i++)
+                {
+                    var order = Model.Input.Orders[i];
+                    <tr>
+                        <td>
+                            <input asp-for="Input.Orders[i].CompanyName" />
+                            <span asp-validation-for="Input.Orders[i].CompanyName" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="Input.Orders[i].Inn" />
+                            <span asp-validation-for="Input.Orders[i].Inn" class=" text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="Input.Orders[i].SystemNalog" />
+                            <span asp-validation-for="Input.Orders[i].SystemNalog" class=" text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="Input.Orders[i].QuarterFrom" />
+                            <span asp-validation-for="Input.Orders[i].QuarterFrom" class=" text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="Input.Orders[i].YearFrom" />
+                            <span asp-validation-for="Input.Orders[i].YearFrom" class=" text-danger"></span>
+                        </td>
+                        <td>
+                            <a href="#" class="remove">Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn btn-success" id="addOrder">Добавить заказ</button>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        var orders = $('#orders tbody');
+        $("#addOrder").click(function () {
+            var rowNo = orders.find('tr').length;
+            var template =
+                '<tr>' +
+                '<td><input name="Orders[' + rowNo + '].CompanyName" id="Orders_' + rowNo + '_CompanyName" /></td>' +
+                '<td><input name="Orders[' + rowNo + '].Inn" id="Orders_' + rowNo + 'Inn" /></td>' +
+                '<td><input name="Orders[' + rowNo + '].SystemNalog" id="Orders_' + rowNo + 'SystemNalog" /></td>' +
+                '<td><input name="Orders[' + rowNo + '].QuarterFrom" id="Orders_' + rowNo + 'QuarterFrom" /></td>' +
+                '<td><input name="Orders[' + rowNo + '].YearFrom" id="Orders_' + rowNo + 'YearFrom" /></td>' +
+                '</tr>';
+            orders.append(template);
+        });
+
+        orders.on('click', '.remove', function (e) {
+            $(this).closest('tr').remove();
+        });
+    </script>
+}
