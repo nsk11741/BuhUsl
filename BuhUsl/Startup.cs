@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BuhUsl.Services;
 
 namespace BuhUsl
 {
@@ -36,6 +37,7 @@ namespace BuhUsl
 			services.AddRazorPages();
 
 			services.AddScoped<ClientService>();
+			services.AddScoped<IMessageSender, EmailSender>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

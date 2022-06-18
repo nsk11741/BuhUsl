@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using BuhUsl.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using BuhUsl.Services;
 
 namespace BuhUsl.Pages
 {
     public class ViewModel : PageModel
     {
+		private readonly IMessageSender _messageSender;
 		public ClientDetailViewModel Client { get; set; }
 		private readonly ClientService _service;
-		public ViewModel(ClientService service)
+		public ViewModel(ClientService service, IMessageSender messageSender)
 		{
 			_service = service;
+			_messageSender = messageSender;
 		}
 
 		public async Task<IActionResult> OnGetAsync(int id)
@@ -24,6 +27,7 @@ namespace BuhUsl.Pages
 			{
 				return NotFound();
 			}
+			_messageSender.SendMessage(Client.Email);
 			return Page();
 		}
 

@@ -6,7 +6,6 @@
 
 <p>@Model.Client.Email</p>
 
-
 <dl>
     @foreach (var item in Model.Client.Orders)
     {
@@ -17,3 +16,5 @@
         <dd>@item.Year</dd>
     }
 </dl>
+
+<p>Эмуляция отправки подтверждения заказа на email см. в логе.</p>
