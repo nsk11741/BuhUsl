@@ -3,27 +3,37 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using BuhUsl.Data;
 using BuhUsl.Models;
+using BuhUsl.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BuhUsl.Pages
 {
+	[Authorize]
 	public class NullOtchModel : PageModel
     {
 		[BindProperty]
-		public CreateClientCommand Input { get; set; }
-		private readonly ClientService _service;
+		public CreateOrgCommand Input { get; set; }
+		private readonly OrgService _service;
+		private readonly UserManager<ApplicationUser> _userService;
+		private readonly IMessageSender _messageSender;
 
-		public NullOtchModel(ClientService service)
+
+		public NullOtchModel(OrgService service, UserManager<ApplicationUser> userService, IMessageSender messageSender)
 		{
 			_service = service;
+			_userService = userService;
+			_messageSender = messageSender;
 		}
 
 		public void OnGet()
 		{
-			Input = new CreateClientCommand();
+			Input = new CreateOrgCommand();
 		}
 
 		public async Task<IActionResult> OnPost()
@@ -32,7 +42,9 @@ namespace BuhUsl.Pages
 			{
 				if (ModelState.IsValid)
 				{
-					var id = await _service.CreateClient(Input);
+					var appUser = await _userService.GetUserAsync(User);
+					var id = await _service.CreateOrg(Input, appUser, "Нулевая отчетность");
+					_messageSender.SendMessage(appUser.Email);
 					return RedirectToPage("View", new { id = id });
 				}
 			}

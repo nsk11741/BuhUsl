@@ -1,20 +1,27 @@
 ﻿@page "{id}/{handler?}"
 @model BuhUsl.Pages.ViewModel
-@{ ViewData["Title"] = Model.Client.Name; }
+@{ ViewData["Title"] = Model.Org.Name; }
 
-<h2>@Model.Client.Name</h2>
+<h2>@Model.Org.Name</h2>
 
-<p>@Model.Client.Email</p>
+<form asp-page-handler="Delete" asp-route-id="@Model.Org.Id">
+    <p>
+        @if (Model.CanEditOrg)
+        {
+            <a asp-Page="Edit" asp-route-id="@Model.Org.Id" class="btn btn-primary">Edit</a>
+            <button class="btn btn-danger">Delete</button>
+        }
+    </p>
+</form>
 
-<dl>
-    @foreach (var item in Model.Client.Orders)
-    {
-        <dt>@item.Name</dt>
-        <dd>@item.Inn</dd>
-        <dd>@item.SystemNalog</dd>
-        <dd>@item.Quarter</dd>
-        <dd>@item.Year</dd>
-    }
+<dl
+    <dt>@Model.Org.ServiceName</dt>
+    <dt>@Model.Org.Name</dt>
+    <dd>@Model.Org.Inn</dd>
+    <dd>@Model.Org.SystemNalog</dd>
+    <dd>@Model.Org.Quarter</dd>
+    <dd>@Model.Org.Year</dd>
+
 </dl>
 
-<p>Эмуляция отправки подтверждения заказа на email см. в логе.</p>
+

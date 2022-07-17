@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BuhUsl.Services;
+using BuhUsl.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BuhUsl
 {
@@ -34,10 +36,21 @@ namespace BuhUsl
 					options => options.UseSqlite(connString)
 			);
 
+			services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false) //TODO сменить на true
+				.AddEntityFrameworkStores<AppDbContext>();
+
 			services.AddRazorPages();
 
-			services.AddScoped<ClientService>();
+			services.AddScoped<OrgService>();
 			services.AddScoped<IMessageSender, EmailSender>();
+			services.AddScoped<IAuthorizationHandler, IsOrgOwnerHandler>();
+
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("CanManageOrg",
+					policyBuilder => policyBuilder
+						.AddRequirements(new IsOrgOwnerRequirement()));
+			});
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +58,7 @@ namespace BuhUsl
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				//app.UseMigrationsEndPoint();
 			}
 			else
 			{
@@ -55,6 +69,7 @@ namespace BuhUsl
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

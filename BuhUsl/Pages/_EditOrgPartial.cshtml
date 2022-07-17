@@ -1,0 +1,42 @@
+﻿@model Models.EditOrgBase
+
+<div class="form-group">
+    <label asp-for="Name" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Inn" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="Inn" class="form-control" />
+        <span asp-validation-for="Inn" class="text-danger"></span>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label asp-for="SystemNalog"></label>
+    <select class="form-control dropdown" asp-for="SystemNalog" asp-items="Model.SystemNalogList">
+        <option value=""> --- </option>
+    </select>
+    <span asp-validation-for="SystemNalog" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Quarter"></label>
+    <select class="form-control dropdown" asp-for="Quarter" asp-items="Model.QuarterFromList">
+        <option value=""> --- </option>
+    </select>
+    <span asp-validation-for="Quarter" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Year"></label>
+    <select class="form-control dropdown" asp-for="Year" asp-items="Model.YearFromList">
+        <option value=""> --- </option>
+    </select>
+    <span asp-validation-for="Year" class="text-danger"></span>
+</div>
+

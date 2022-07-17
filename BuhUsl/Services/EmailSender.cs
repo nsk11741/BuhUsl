@@ -6,7 +6,7 @@ namespace BuhUsl.Services
 	{
 		public void SendMessage(string recipient)
 		{
-			Console.WriteLine($"Подтверждение заказа отправлено на адрес: {recipient}");
+			Console.WriteLine($"Приветственное сообщение отправлено на адрес: {recipient}");
 		}
 	}
 }

@@ -2,13 +2,13 @@
 
 namespace BuhUsl.Migrations
 {
-    public partial class MailingListField : Migration
+    public partial class addFields : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
-                name: "IsMailingList",
-                table: "Clients",
+                name: "IsDone",
+                table: "Orgs",
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: false);
@@ -17,8 +17,8 @@ namespace BuhUsl.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IsMailingList",
-                table: "Clients");
+                name: "IsDone",
+                table: "Orgs");
         }
     }
 }
